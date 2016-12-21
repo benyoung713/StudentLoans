@@ -1,0 +1,29 @@
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url("uni.jpg");
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    
+}
+
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.textC {
+    padding: 40px;
+    background-color: rgba(204, 204, 204, 0.7); 
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.footC{
+    color:white;
+}
