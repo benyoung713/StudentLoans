@@ -12,17 +12,19 @@ public partial class _Default : Page
 
     }
 
+    double payBackPerYear = 0;
 
     protected void Calculate_Click(object sender, EventArgs e)
     {
-        try {
+        try
+        {
             int yearStarted = Convert.ToInt32(YearInput.Text);
             int courseLength = Convert.ToInt32(LengthList.SelectedValue);
             int maintenanceLoan = MaintenanceInput.Text == "" ? 0 : Convert.ToInt32(MaintenanceInput.Text);
             int salary = Convert.ToInt32(Salary.Text);
             int uniLoan = 0;
             int payBackSalary = 0;
-            double payBackPerYear = 0;
+            
             double payBackTimeInYears = 0;
             double payBackMonths = 0;
 
@@ -54,13 +56,15 @@ public partial class _Default : Page
                     payBackTimeInYears = Math.Floor(totalLoan / payBackPerYear);
                     if (payBackTimeInYears > 25)
                     {
-                        Result.Text = "Your total loan is £" + totalLoan + ". There is a cut-off of 25 years on paying back a student loan. So if you stay on your current salary, you will pay £" + payBackPerYear+" per year. You will have paid off £" + 25 * payBackPerYear + " before your debt is wiped.";
+                        Result.Text = "Your total loan is £" + totalLoan + ". There is a cut-off of 25 years on paying back a student loan. So if you stay on your current salary, you will pay £" + payBackPerYear + " per year. You will have paid off £" + 25 * payBackPerYear + " before your debt is wiped.";
                     }
                     else {
                         double payBackMonthsRounded = Math.Floor(totalLoan / payBackPerYear);
                         payBackMonths = Math.Ceiling((totalLoan - (payBackMonthsRounded * payBackPerYear)) / payBackPerYear * 12);
                         Result.Text = "Your total loan is £" + totalLoan + ". On a salary of £" + salary + ", you will pay back £" + payBackPerYear + " per year. Therefore it will take you "
                             + payBackTimeInYears + " years, " + payBackMonths + " month(s) to pay off your loan.";
+
+                        drawChart(payBackPerYear, totalLoan);
                     }
                 }
             }
@@ -68,11 +72,17 @@ public partial class _Default : Page
                 Result.Text = "There were no student loans issued by the Student Loans Company before 2004.";
             }
 
+            
         }
-        catch(Exception)
+        catch (Exception)
         {
             Result.Text = "You entered some invalid input. Please try again.";
         }
-        }
+    }
+
+    private void drawChart(double payBackPerYear, int totalLoan)
+    {
+        ClientScript.RegisterStartupScript(GetType(), "draw", "draw(" + payBackPerYear + "," + totalLoan + ");", true);
+    }
 
 }
