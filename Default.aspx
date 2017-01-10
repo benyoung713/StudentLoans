@@ -37,6 +37,10 @@
             <br /><br />
             <h2>Your Result</h2>
             <asp:Label ID="Result" runat="server"></asp:Label>
+            <br />
+            <div id="chartContainer">
+
+            </div>
         </div>
        </div>
     </div>
