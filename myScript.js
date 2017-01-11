@@ -1,34 +1,40 @@
-
 draw = function (payBackPerYear, totalLoan) {
 
-    var graphData = new Array();
-    var graphValue;
+    var dps = new Array();
+    var yValue;
+    var xValue = 0;
 
     for(i = 1; i < 26; i++){
-        graphValue = totalLoan - (i * payBackPerYear);
-        graphData.push(graphValue);
+        yValue = totalLoan - (i * payBackPerYear);
+        xValue++;
+        if (yValue <= 0) { break;}
+        dps.push({ x: xValue, y: yValue });
                         
     }
 
            
-        var chart = new CanvasJS.Chart("chartContainer", {
-            theme: "theme1",//theme1
-            /*title:{
-                text: ""              
-            },*/
-            animationEnabled: true,
-            data: [              
-            {
-                type: "line", 
-                dataPoints: [
-                    { label: 0,  y: totalLoan},
-                    { label: i, y: graphData[i-1]},
-                                    ]
-            }
-            ]
-        });
-        chart.render();
-    }
+    var chart = new CanvasJS.Chart("chartContainer", {
+        theme: "theme1",//theme1
+        title:{
+            text: "Graph showing the value of the loan through repayments"              
+        },
+        axisX:{title: "Time in years"
+
+        },
+        axisY: {
+            title: "Amount left to pay (£)",
+            interlacedColor: "azure"
+        },
+        animationEnabled: true,
+        data: [              
+        {
+            type: "line", 
+            dataPoints: dps
+        }
+        ]
+    });
+    chart.render();
+}
     
 
 
