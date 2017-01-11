@@ -24,7 +24,7 @@ public partial class _Default : Page
             int salary = Convert.ToInt32(Salary.Text);
             int uniLoan = 0;
             int payBackSalary = 0;
-            
+
             double payBackTimeInYears = 0;
             double payBackMonths = 0;
 
@@ -57,8 +57,10 @@ public partial class _Default : Page
                     if (payBackTimeInYears > 25)
                     {
                         Result.Text = "Your total loan is £" + totalLoan + ". There is a cut-off of 25 years on paying back a student loan. So if you stay on your current salary, you will pay £" + payBackPerYear + " per year. You will have paid off £" + 25 * payBackPerYear + " before your debt is wiped.";
+                        drawChart(payBackPerYear, totalLoan);
                     }
-                    else {
+                    else
+                    {
                         double payBackMonthsRounded = Math.Floor(totalLoan / payBackPerYear);
                         payBackMonths = Math.Ceiling((totalLoan - (payBackMonthsRounded * payBackPerYear)) / payBackPerYear * 12);
                         Result.Text = "Your total loan is £" + totalLoan + ". On a salary of £" + salary + ", you will pay back £" + payBackPerYear + " per year. Therefore it will take you "
@@ -68,11 +70,12 @@ public partial class _Default : Page
                     }
                 }
             }
-            else {
+            else
+            {
                 Result.Text = "There were no student loans issued by the Student Loans Company before 2004.";
             }
 
-            
+
         }
         catch (Exception)
         {
