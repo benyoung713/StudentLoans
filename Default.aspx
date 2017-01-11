@@ -27,21 +27,20 @@
             <asp:TextBox ID="MaintenanceInput" runat="server" Placeholder="The amount you borrowed"></asp:TextBox>
             
             <br /><br />
-            
-        </div>
-        <div class="col-md-6 rightSide">
             <h2>Earning Information</h2>
            <h4>How much do you earn currently or expect to earn?</h4>
             <asp:TextBox ID="Salary" runat="server" Placeholder="Amount"></asp:TextBox>
             <asp:Button ID="Calculate" runat="server" Text="Calculate" OnClick="Calculate_Click" />
-            <br /><br />
-            <h2>Your Result</h2>
-            <asp:Label ID="Result" runat="server"></asp:Label>
-            <br />
-            <div id="chartContainer">
-
-            </div>
         </div>
+        <div class="col-md-6 rightSide">
+            
+            <h2>Your Result</h2>
+         <asp:Label ID="Result" runat="server">             
+            </asp:Label>
+            <div id="chartContainer"></div>   
+        </div>
+            
+            
        </div>
     </div>
 </asp:Content>
