@@ -1,4 +1,4 @@
-draw = function (payBackPerYear, totalLoan) {
+﻿draw = function (payBackPerYear, totalLoan) {
 
     var dps = new Array();
     var yValue;
